@@ -46,3 +46,12 @@ const links = document.querySelectorAll('.titles a');
 for(let link of links){
   link.addEventListener('click', titleClickHandler);
 }
+
+function generateTitleLinks(){
+  console.log("funkcja generateTitleLinks uruchomina")
+  //usuń zawartość listy linków w lewej kolumnie,
+  const linkList =  document.querySelector(".titles.list");
+  linkList.innerHTML="";
+}
+
+generateTitleLinks()
