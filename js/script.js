@@ -80,12 +80,18 @@ function generateTitleLinks(){
       console.log(linkHTML);
 
       html = html + linkHTML;
+      console.log(linkHTML);
     }
 
-  
-  
  /* insert link into titleList */
 linkList.innerHTML = html;
+
+const links = document.querySelectorAll('.titles a');
+
+for(let link of links){
+    link.addEventListener('click', titleClickHandler);
+  }
+
 }
 
 generateTitleLinks()
