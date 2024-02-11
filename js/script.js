@@ -47,6 +47,8 @@ for(let link of links){
   link.addEventListener('click', titleClickHandler);
 }
 
+
+
 function generateTitleLinks(){
 
   const optArticleSelector = '.post',
@@ -60,28 +62,30 @@ function generateTitleLinks(){
 
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
+
+  let html = '';
   for(let article of articles){ // Corrected loop to use for...of
-    
-   /* get the article id */
-    let articleID= article.id
-    console.log(articleID);
-    
-    /* find the title element */
-    /* get the title from the title element */
-    let articleTitle= article.querySelector(optTitleSelector).innerHTML
-    console.log(article.querySelector(optTitleSelector).innerHTML);
+      
+    /* get the article id */
+      let articleID= article.id
+      console.log(articleID);
+      
+      /* find the title element */
+      /* get the title from the title element */
+      let articleTitle= article.querySelector(optTitleSelector).innerHTML
+      console.log(article.querySelector(optTitleSelector).innerHTML);
 
-    const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>';
+      const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>';
 
-    console.log(linkHTML);
+      console.log(linkHTML);
 
-    // linkList.innerHTML= linkList.innerHTML + linkHTML;
-    linkList.insertAdjacentHTML("beforeend",linkHTML)
-  }
+      html = html + linkHTML;
+    }
+
   
   
  /* insert link into titleList */
-
+linkList.innerHTML = html;
 }
 
 generateTitleLinks()
