@@ -1,4 +1,8 @@
 'use strict';
+const optArticleSelector = '.post',
+optTitleSelector = '.post-title',
+optTitleListSelector = '.titles',
+optArticleTagsSelector = '.post-tags .list';
 
 function titleClickHandler(event){
   event.preventDefault();
@@ -41,9 +45,7 @@ function titleClickHandler(event){
 
 function generateTitleLinks(){
 
-  const optArticleSelector = '.post',
-    optTitleSelector = '.post-title',
-    optTitleListSelector = '.titles';
+
 
   console.log('funkcja generateTitleLinks uruchomina');
   //delete content of link list on left side
@@ -89,6 +91,10 @@ generateTitleLinks();
 function generateTags(){
   console.log("function generate tags launched")
   /* find all articles */
+  const articlesTags = document.querySelectorAll(optArticleTagsSelector);
+  console.log("articles")
+  console.log(articlesTags)
+
 
   /* START LOOP: for every article: */
 
