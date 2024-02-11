@@ -49,9 +49,29 @@ for(let link of links){
 
 function generateTitleLinks(){
   console.log("funkcja generateTitleLinks uruchomina")
-  //usuń zawartość listy linków w lewej kolumnie,
+  //delete contetn of link list on left side
   const linkList =  document.querySelector(".titles.list");
   linkList.innerHTML="";
+
+  /* find titles in all articles */
+  const articleIDs  = document.querySelectorAll('.posts article.post');
+  
+  console.log("articles ids")
+  for(let articleID of articleIDs){
+    articleID = articleID.id
+    console.log(articleID)
+  }
+
+  const articleTitles  = document.querySelectorAll('.posts article.post h3');
+  
+  console.log("articles titles")
+  for(let articleTitle of articleTitles){
+    articleTitle = articleTitle.innerHTML
+    console.log(articleTitle)
+  }
+
+ 
+
 }
 
 generateTitleLinks()
