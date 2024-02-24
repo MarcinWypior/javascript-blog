@@ -2,7 +2,8 @@
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optTagsListSelector = '.tags.list';
 
 function titleClickHandler(event){
   event.preventDefault();
@@ -68,13 +69,15 @@ function generateTitleLinks(customSelector = ''){
 generateTitleLinks();
 
 function generateTags(){
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
+
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
 
   /* START LOOP: for every article: */
 
   for(let article of articles){
-
     /* find tags wrapper */
     const articlesTagsWrapper = article.querySelector(optArticleTagsSelector);
   
@@ -92,11 +95,34 @@ function generateTags(){
       /* add generated code to html variable */
       HTML=HTML+' '+HTML_tag;
       /* END LOOP: for each tag */
+
+
+
+      /* [NEW] check if this link is NOT already in allTags */
+      if(allTags.indexOf(HTML_tag) == -1){
+        /* [NEW] add generated code to allTags array */
+        allTags.push(HTML_tag);
+      }else if(allTags.indexOf(HTML_tag) != -1){
+        console.log('link repeated: '+HTML_tag+' is aleready in array');
+      }
+
+
     }
+
+
     /* insert HTML of all the links into the tags wrapper */
     articlesTagsWrapper.innerHTML=HTML;
     /* END LOOP: for every article: */
+    
+    
   }
+
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector(optTagsListSelector);
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
+  console.log(allTags);
+
 }
 
 function tagClickHandler(event){
