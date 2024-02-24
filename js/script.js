@@ -68,6 +68,37 @@ function generateTitleLinks(customSelector = ''){
 
 generateTitleLinks();
 
+function calculateTagsParams(tags){
+  let tagParams={};
+
+  let min=0,max=0;
+  let nameMax='',nameMin='';
+
+  for(let tag in tags){
+    if(tags[tag]>max){
+      max=tags[tag];
+      nameMax=tag;
+    }
+  }
+  console.log('maximum ',max,' for ', nameMax);
+
+  min=max;
+  for(let tag in tags){
+    if(tags[tag]<min){
+      min=tags[tag];
+      nameMin=tag;
+    }
+  }
+  
+  console.log('minimum ',min,' for ', nameMin);
+
+  tagParams['min']=min;
+  tagParams['max']=max;
+
+  return tagParams;
+}
+
+
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
@@ -121,11 +152,13 @@ function generateTags(){
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
   /* [NEW] create variable for all links HTML code */
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams: ', tagsParams);
   let allTagsHTML = '';
 
   /* [NEW] START LOOP: for each tag in allTags: */
   for(let tag in allTags){
-    let HTML_tag='<li><a href="#'+'tag-'+ tag +'">'+tag + '(' + allTags[tag] + ')'+'</a></li>';
+    let HTML_tag='<li><a href="#'+'tag-'+ tag +'">'+tag + '</a>'+'(' + allTags[tag] + ')'+'</li>';
     allTagsHTML +=HTML_tag;
   }
   /* [NEW] END LOOP: for each tag in allTags: */
