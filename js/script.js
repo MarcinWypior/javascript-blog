@@ -48,6 +48,9 @@ function generateTitleLinks(customSelector = ''){
 
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  console.log('selector');
+  console.log(optArticleSelector + customSelector);
+  console.log(articles);
 
   let html = '';
   for(let article of articles){ // Corrected loop to use for...of
@@ -253,8 +256,6 @@ function authorClickHandler(event){
   const href = clickedElement.getAttribute('href');
   /* make a new constant "tag" and extract tag from the "href" constant */
   const author = href.split('-')[1];
-  console.log("author what we will look for ")
-  console.log(author);
   /* find all tag links with class active */
   const activeLinks = document.querySelectorAll('.titles a.active');
   /* START LOOP: for each active tag link */
@@ -271,20 +272,23 @@ function authorClickHandler(event){
     link.classList.add('active');
   /* END LOOP: for each found tag link */
   }
+
+  // console.log("we look for article of ",author)
   /* execute function "generateTitleLinks" with article selector as argument */
-  generateTitleLinks('[data-tags~="' + tag + '"]');
+  generateTitleLinks('[data-author="' + author + '"]');
 }
 
 function addClickListenersToAuthors(){
   const authors = document.querySelectorAll('a[href^="#author-"]');
 
-  console.log(authors);
+  // console.log(authors);
   for(let author of authors){
     // console.log(author);
     author.addEventListener('click', authorClickHandler);
   }
 
 }
+
 
 addClickListenersToAuthors();
 
