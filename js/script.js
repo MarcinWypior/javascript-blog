@@ -184,7 +184,7 @@ function generateTags(){
   for(let tag in allTags){
     const tagLinkHTML = calculateTagClass(allTags[tag],tagsParams);
     console.log(tag + ' tagLinkHTML calculated size',tagLinkHTML);
-    let HTML_tag='<li><a class="' + tagLinkHTML +'" href="#'+'tag-'+ tag +'">'+tag + '</a>'+'(' + allTags[tag] + ')'+'</li>';
+    let HTML_tag='<li><a class="' + tagLinkHTML +'" href="#'+'tag-'+ tag +'">'+tag + '</a></li>';
     allTagsHTML +=HTML_tag;
   }
   /* [NEW] END LOOP: for each tag in allTags: */
@@ -226,7 +226,7 @@ generateTags();
 
 function addClickListenersToTags(){
   /* find all links to tags */
-  const allLinksToTags = document.querySelectorAll('.post-tags a[href^="#tag-"]');
+  const allLinksToTags = document.querySelectorAll('a[href^="#tag-"]');
   /* START LOOP: for each link */
   for(let link of allLinksToTags){
   /* add tagClickHandler as event listener for that link */
