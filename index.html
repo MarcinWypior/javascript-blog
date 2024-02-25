@@ -201,6 +201,19 @@
         </div>
       </div>
 
+
+
+      <!-- let HTML_tag='<li><a href="#'+'author-'+ author +'">'+author+' ('+ allAuthors[author] + ') </a></li>'; -->
+      <script id="template-author" type="text/x-handlebars-template">
+        <li><a href="#author-{{ author }}">{{ author }}  {{amountOfArticles}}</a></li>
+      </script>
+
+      <!-- let HTML_tag='<li><a class="' + tagLinkHTML +'" href="#'+'tag-'+ tag +'">'+tag + '</a></li>'; -->
+      <script id="template-article-tag-cloud" type="text/x-handlebars-template">
+        <li><a class="{{tagLinkHTML}}" href="#tag-{{ tag }}">{{ tag }}</a></li>
+      </script>
+
+
       <script id="template-article-tag" type="text/x-handlebars-template">
         <li><a href="#tag-{{ tag }}"><span>{{ tag }}</span></a></li>
       </script>
