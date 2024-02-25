@@ -1,4 +1,10 @@
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  articleTag: Handlebars.compile(document.querySelector('#template-article-tag').innerHTML),
+}
+
 'use strict';
+
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
@@ -48,20 +54,19 @@ function generateTitleLinks(customSelector = ''){
 
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
-  console.log('selector');
-  console.log(optArticleSelector + customSelector);
-  console.log(articles);
 
   let html = '';
   for(let article of articles){ // Corrected loop to use for...of
     
     /* get the article id */
-    let articleID= article.id;
+    let articleId= article.id;
     
     /* find the title element */
     /* get the title from the title element */
     let articleTitle= article.querySelector(optTitleSelector).innerHTML;
-    const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>';
+    // const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    const linkHTMLData = {'id': articleId, 'title': articleTitle};
+    const linkHTML = templates.articleLink(linkHTMLData);
     html = html + linkHTML;
   }
 
@@ -89,7 +94,6 @@ function calculateTagsParams(tags){
       nameMax=tag;
     }
   }
-  console.log('maximum ',max,' for ', nameMax);
 
   min=max;
   for(let tag in tags){
@@ -98,8 +102,6 @@ function calculateTagsParams(tags){
       nameMin=tag;
     }
   }
-  
-  console.log('minimum ',min,' for ', nameMin);
 
   tagParams['min']=min;
   tagParams['max']=max;
@@ -146,7 +148,11 @@ function generateTags(){
     /* START LOOP: for each tag */
     for(let tag of articleTagsArray){
       /* generate HTML of the link */
-      let HTML_tag='<li><a href="#'+'tag-'+ tag +'">'+tag+'</a></li>';
+      // console.log(tag);
+      // const HTML_tag='<li><a href="#'+'tag-'+ tag +'">'+tag+'</a></li>';
+      const tagHTMLData = {'tag': tag};
+      const HTML_tag = templates.articleTag(tagHTMLData);
+      // console.log(HTML_tag);
       // '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>';
       /* add generated code to html variable */
       HTML=HTML+' '+HTML_tag;
@@ -161,7 +167,7 @@ function generateTags(){
       }
 
     }
-
+    console.log(HTML);
     /* insert HTML of all the links into the tags wrapper */
     articlesTagsWrapper.innerHTML=HTML;
     /* END LOOP: for every article: */
