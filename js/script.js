@@ -1,3 +1,4 @@
+/* global Handlebars */
 const templates = {
   authors: Handlebars.compile(document.querySelector('#template-author').innerHTML),
   articleTagCloud: Handlebars.compile(document.querySelector('#template-article-tag-cloud').innerHTML),
